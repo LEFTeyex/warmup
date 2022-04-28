@@ -9,6 +9,12 @@
 
 A Warmup Scheduler for Pytorch to achieve the warmup learning rate at the beginning of training.
 
+## setup
+
+```
+setup by pip will be achieved soon.
+```
+
 ## Usage
 
 Detail to see [run.py](run.py) file.
