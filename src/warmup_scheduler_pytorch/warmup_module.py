@@ -8,7 +8,7 @@ from torch.optim.lr_scheduler import _LRScheduler  # ignore its error
 
 __all__ = ['VERSION', 'WarmUpScheduler']
 
-VERSION = '1.0.0'
+VERSION = '0.1.0'
 
 
 class WarmUpScheduler(object):
