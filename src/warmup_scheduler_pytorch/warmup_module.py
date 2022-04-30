@@ -6,7 +6,9 @@ Use it with optimizer, lr_scheduler and len(dataloader).
 from torch.optim import Optimizer
 from torch.optim.lr_scheduler import _LRScheduler  # ignore its error
 
-__all__ = ['WarmUpScheduler']
+__all__ = ['VERSION', 'WarmUpScheduler']
+
+VERSION = '1.0.0'
 
 
 class WarmUpScheduler(object):
@@ -17,23 +19,24 @@ class WarmUpScheduler(object):
     Args:
         optimizer: Optimizer = Wrapped optimizer in Pytorch.
         lr_scheduler: _LRScheduler = Wrapped lr_scheduler in Pytorch.
-        warmup_steps: int = The number of iterations for warmup.
-        warmup_start_lr: list or tuple or float = The start learning rate of warmup for optimizer param_groups.
+        warmup_steps: int = The number of iterations for warmup_scheduler_pytorch.
+        warmup_start_lr: list or tuple or float = The start learning rate of warmup_scheduler_pytorch
+                                                  for optimizer param_groups.
         len_loader: int = The length of dataloader.
         warmup_mode: str ='linear'.
         verbose: bool = If True, prints a message to stdout for each update.
 
     Example:
-        '>>> optimizer = torch.optim.SGD(model.parameters(), lr=0.1)                                                   '
-        '>>> lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)                        '
-        '>>> data_loader = torch.utils.data.DataLoader(...)                                                            '
-        '>>> warmup_scheduler = WarmUpScheduler(optimizer, lr_scheduler, len_loader=len(data_loader),                  '
-        '>>>                                    warmup_steps=64, warmup_start_lr=0.01)                                 '
-        '>>> for epoch in range(10):                                                                                   '
-        '>>>     for batch in data_loader:                                                                             '
-        '>>>         train(...)                                                                                        '
-        '>>>         validate(...)                                                                                     '
-        '>>>         warmup_scheduler.step()                                                                           '
+        '>>> optimizer = torch.optim.SGD(model.parameters(), lr=0.1)                                               '
+        '>>> lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=30, gamma=0.1)                    '
+        '>>> data_loader = torch.utils.data.DataLoader(...)                                                        '
+        '>>> warmup_scheduler_pytorch = WarmUpScheduler(optimizer, lr_scheduler, len_loader=len(data_loader),      '
+        '>>>                                    warmup_steps=64, warmup_start_lr=0.01)                             '
+        '>>> for epoch in range(10):                                                                               '
+        '>>>     for batch in data_loader:                                                                         '
+        '>>>         train(...)                                                                                    '
+        '>>>         validate(...)                                                                                 '
+        '>>>         warmup_scheduler_pytorch.step()                                                               '
     """
 
     def __init__(self, optimizer, lr_scheduler, warmup_steps: int, warmup_start_lr,
@@ -99,12 +102,12 @@ class WarmUpScheduler(object):
 
     def get_last_lr(self):
         r"""
-        Return last computed learning rate by current warmup scheduler.
+        Return last computed learning rate by current warmup_scheduler_pytorch scheduler.
         """
         return self._last_lr
 
     def get_warmup_lr(self):
-        r"""Return warmup learning rate to upgrade"""
+        r"""Return warmup_scheduler_pytorch learning rate to upgrade"""
         if self.warmup_mode == 'linear':
             return [warmup_lr + (base_lr - warmup_lr) * (self.last_step / self.warmup_steps)
                     for warmup_lr, base_lr in zip(self.warmup_start_lrs, self.base_lrs)]
@@ -134,7 +137,7 @@ class WarmUpScheduler(object):
         return self.last_step % self.len_loader == 0
 
     def _step(self, epoch):
-        r"""For warmup and lr_scheduler step once"""
+        r"""For warmup_scheduler_pytorch and lr_scheduler step once"""
         if self.__warmup_done and self._new_epoch:
             self.lr_scheduler.step()
 

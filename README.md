@@ -1,9 +1,9 @@
-# <center>Pytorch Warmup Scheduler</center>
+# <center>Warmup Scheduler Pytorch</center>
 
-[![](https://img.shields.io/badge/developed-100%25-red.svg)]()
-[![](https://img.shields.io/badge/license-MIT-black.svg)](https://choosealicense.com/licenses/mit/)
-[![](https://img.shields.io/badge/version-v1.0.0-blue.svg)]()
-[![](https://img.shields.io/badge/Author-LEFTeyes-pink.svg)](https://github.com/LEFTeyex)
+[![Tests](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yml/badge.svg)](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yml)
+[![PyPI version shields.io](https://img.shields.io/pypi/v/warmup-scheduler-pytorch.svg)](https://pypi.org/project/warmup-scheduler-pytorch/)
+[![PyPI license](https://img.shields.io/pypi/l/warmup-scheduler-pytorch.svg)](https://pypi.org/project/warmup-scheduler-pytorch/)
+[![PyPI pyversions](https://img.shields.io/pypi/pyversions/warmup-scheduler-pytorch.svg)](https://pypi.python.org/pypi/warmup-scheduler-pytorch/)
 
 ## Description
 
@@ -12,20 +12,20 @@ A Warmup Scheduler for Pytorch to achieve the warmup learning rate at the beginn
 ## setup
 
 ```
-setup by pip will be achieved soon.
+pip install warmup_scheduler_pytorch
 ```
 
 ## Usage
 
-Detail to see [run.py](run.py) file.
+Detail to see [example.py](example.py) file.
 
 ```python
 import torch
 
-from torch.optim import SGD
-from torch.optim.lr_scheduler import CosineAnnealingLR
+from torch.optim import SGD  # example
+from torch.optim.lr_scheduler import CosineAnnealingLR  # example
 
-from warmup_module import WarmUpScheduler
+from warmup_scheduler_pytorch.warmup_module import WarmUpScheduler
 
 model = Model()
 optimizer = SGD(model.parameters(), lr=0.1)
