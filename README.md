@@ -1,6 +1,7 @@
 # <center>Warmup Scheduler Pytorch</center>
 
-[![Tests](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yml/badge.svg)](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yml)
+[![Tests](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yaml/badge.svg)](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yaml)
+[![codecov](https://codecov.io/gh/LEFTeyex/warmup/branch/master/graph/badge.svg?token=E90TZPO40B)](https://codecov.io/gh/LEFTeyex/warmup)
 [![PyPI version shields.io](https://img.shields.io/pypi/v/warmup-scheduler-pytorch.svg)](https://pypi.org/project/warmup-scheduler-pytorch/)
 [![PyPI license](https://img.shields.io/pypi/l/warmup-scheduler-pytorch.svg)](https://pypi.org/project/warmup-scheduler-pytorch/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/warmup-scheduler-pytorch.svg)](https://pypi.python.org/pypi/warmup-scheduler-pytorch/)

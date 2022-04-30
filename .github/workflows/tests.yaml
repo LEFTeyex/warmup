@@ -15,7 +15,7 @@ jobs:
       max-parallel: 8
       matrix:
         python-version: [ 3.6, 3.7, 3.8, 3.9, 3.10 ]
-        os: [ macos-latest, windows-latest, ubuntu-latest, ubuntu-18.04 ]
+        os: [ windows-latest, ubuntu-latest ]
 
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +27,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install flake8 pytest numpy
-          pip install torch==1.4.0 -f https://download.pytorch.org/whl/torch_stable.html
+          pip install torch==1.1.0 -f https://download.pytorch.org/whl/torch_stable.html
       - name: Lint with flake8
         run: |
           # stop the build if there are Python syntax errors or undefined names
