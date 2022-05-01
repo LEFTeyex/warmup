@@ -45,7 +45,7 @@ def run():
                 epoch_lr[1].append(get_lr(optimizer))
 
             # output = model(...)
-            # loss = loss_fn(output, ...)
+            # loss = loss_fn(output, label)
             # loss.backward()
             optimizer.step()
             optimizer.zero_grad()

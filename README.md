@@ -8,9 +8,14 @@
 
 ## Description
 
-A Warmup Scheduler for Pytorch to achieve the warmup learning rate at the beginning of training.
+A Warmup Scheduler for Pytorch to make the warmup learning rate change at the beginning of training.
 
 ## setup
+
+Notice: need to install pytorch>=1.1.0 manually. \
+The official website of pytorch is: https://pytorch.org/
+
+Then install as follows:
 
 ```
 pip install warmup_scheduler_pytorch
@@ -26,7 +31,7 @@ import torch
 from torch.optim import SGD  # example
 from torch.optim.lr_scheduler import CosineAnnealingLR  # example
 
-from warmup_scheduler_pytorch.warmup_module import WarmUpScheduler
+from warmup_scheduler_pytorch import WarmUpScheduler
 
 model = Model()
 optimizer = SGD(model.parameters(), lr=0.1)

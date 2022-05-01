@@ -77,8 +77,8 @@ class TestWarmupScheduler(object):
             pass
 
     def test_warmup_state_dict(self):
-        sd = self.warmup_scheduler.state_dict()
-        self.warmup_scheduler.load_state_dict(sd)
+        state_dict = self.warmup_scheduler.state_dict()
+        self.warmup_scheduler.load_state_dict(state_dict)
 
     def test_warmup_get(self):
         self.warmup_scheduler.get_last_lr()

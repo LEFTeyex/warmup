@@ -4,11 +4,11 @@ Use it with optimizer, lr_scheduler and len(dataloader).
 """
 
 from torch.optim import Optimizer
-from torch.optim.lr_scheduler import _LRScheduler  # ignore its error
+from torch.optim.lr_scheduler import _LRScheduler
 
 __all__ = ['VERSION', 'WarmUpScheduler']
 
-VERSION = '0.1.0'
+VERSION = '0.1.1'
 
 
 class WarmUpScheduler(object):
