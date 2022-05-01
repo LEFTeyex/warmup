@@ -1,29 +1,32 @@
-# <center>Warmup Scheduler Pytorch</center>
+# Warmup Scheduler Pytorch
 
-[![Tests](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yaml/badge.svg)](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yaml)
-[![codecov](https://codecov.io/gh/LEFTeyex/warmup/branch/master/graph/badge.svg?token=E90TZPO40B)](https://codecov.io/gh/LEFTeyex/warmup)
-[![PyPI version shields.io](https://img.shields.io/pypi/v/warmup-scheduler-pytorch.svg)](https://pypi.org/project/warmup-scheduler-pytorch/)
-[![PyPI license](https://img.shields.io/pypi/l/warmup-scheduler-pytorch.svg)](https://pypi.org/project/warmup-scheduler-pytorch/)
-[![PyPI pyversions](https://img.shields.io/pypi/pyversions/warmup-scheduler-pytorch.svg)](https://pypi.python.org/pypi/warmup-scheduler-pytorch/)
+[![pypi version](https://img.shields.io/pypi/v/warmup-scheduler-pytorch.svg)](https://pypi.org/project/warmup-scheduler-pytorch/)
+[![pypi downloads](https://static.pepy.tech/personalized-badge/warmup-scheduler-pytorch?period=total&units=international_system&left_color=grey&right_color=green&left_text=downloads)](https://pypi.org/project/warmup-scheduler-pytorch/)
+[![pypi pyversions](https://img.shields.io/pypi/pyversions/warmup-scheduler-pytorch.svg)](https://pypi.python.org/pypi/warmup-scheduler-pytorch/)
+
+[![github license](https://img.shields.io/github/license/LEFTeyex/warmup)](https://github.com/LEFTeyex/warmup/blob/master/LICENSE)
+[![github repository size](https://img.shields.io/github/repo-size/LEFTeyex/warmup)](https://github.com/LEFTeyex/warmup)
+[![github tests](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yaml/badge.svg)](https://github.com/LEFTeyex/warmup/actions/workflows/tests.yaml)
+[![codecov coverage](https://codecov.io/gh/LEFTeyex/warmup/branch/master/graph/badge.svg?token=E90TZPO40B)](https://codecov.io/gh/LEFTeyex/warmup)
 
 ## Description
 
-A Warmup Scheduler for Pytorch to make the warmup learning rate change at the beginning of training.
+A Warmup Scheduler in Pytorch to make the learning rate change at the beginning of training for warmup.
 
-## setup
+## Install
 
 Notice: need to install pytorch>=1.1.0 manually. \
-The official website of pytorch is: https://pytorch.org/
+The official website is [PyTorch](https://pytorch.org/)
 
 Then install as follows:
 
-```
+```bash
 pip install warmup_scheduler_pytorch
 ```
 
 ## Usage
 
-Detail to see [example.py](example.py) file.
+Detail to see [GitHub example.py](https://github.com/LEFTeyex/warmup/blob/master/example.py) file.
 
 ```python
 import torch
