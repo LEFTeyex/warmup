@@ -4,11 +4,11 @@ Use it with optimizer, lr_scheduler and len(dataloader).
 """
 
 from torch.optim import Optimizer
-from torch.optim.lr_scheduler import _LRScheduler
+from torch.optim.lr_scheduler import _LRScheduler, ReduceLROnPlateau
 
 __all__ = ['VERSION', 'WarmUpScheduler']
 
-VERSION = '0.1.1'
+VERSION = '0.1.2'
 
 
 class WarmUpScheduler(object):
@@ -44,12 +44,12 @@ class WarmUpScheduler(object):
 
         # Attach optimizer
         if not isinstance(optimizer, Optimizer):
-            raise TypeError(f'{type(optimizer).__name__} is not an Optimizer')
+            raise TypeError(f'{type(optimizer).__name__} is not an Optimizer in pytorch')
         self.optimizer = optimizer
 
         # Attach lr_scheduler
-        if not isinstance(lr_scheduler, _LRScheduler):
-            raise TypeError(f'{type(lr_scheduler).__name__} is not a _LRScheduler')
+        if not isinstance(lr_scheduler, (_LRScheduler, ReduceLROnPlateau)):
+            raise TypeError(f'{type(lr_scheduler).__name__} is not a lr_scheduler in pytorch')
         self.lr_scheduler = lr_scheduler
 
         # check whether attribute initial_lr in optimizer.param_group
@@ -77,6 +77,7 @@ class WarmUpScheduler(object):
         self._step_count = 0
         self._last_lr = None
         self.__warmup_done = False
+        self.__is_ReduceLROnPlateau = isinstance(lr_scheduler, ReduceLROnPlateau)
         self.verbose = verbose
 
         self.step()
@@ -136,12 +137,15 @@ class WarmUpScheduler(object):
         r"""Return whether is a new epoch started now"""
         return self.last_step % self.len_loader == 0
 
-    def _step(self, epoch):
+    def _step(self, epoch, metrics):
         r"""For warmup_scheduler_pytorch and lr_scheduler step once"""
         if self.__warmup_done and self._new_epoch:
-            self.lr_scheduler.step()
+            if self.__is_ReduceLROnPlateau:
+                self.lr_scheduler.step(metrics, epoch)
+            else:
+                self.lr_scheduler.step(epoch)
 
-        elif not self.__warmup_done and self.last_step <= self.warmup_steps:
+        elif (not self.__warmup_done) and (self.last_step <= self.warmup_steps):
             values = self.get_warmup_lr()
 
             if self.last_step >= self.warmup_steps:
@@ -151,29 +155,29 @@ class WarmUpScheduler(object):
                 param_group['lr'] = lr
                 self.print_lr(self.verbose, idx, lr, epoch)
 
-    def step(self, step=None, epoch=None):
+    def step(self, metrics=None, step=None, epoch=None):
         self._step_count += 1
 
         if step is None and epoch is None:
             self.last_step += 1
             if self._new_epoch:
                 self.last_epoch += 1
-            self._step(epoch)
+            self._step(epoch, metrics)
 
         elif step is not None and epoch is None:
             self.last_step = step
             self.last_epoch = step // self.len_loader
-            self._step(epoch)
+            self._step(epoch, metrics)
 
         elif step is None and epoch is not None:
             self.last_step = epoch * self.len_loader
             self.last_epoch = epoch
-            self._step(epoch)
+            self._step(epoch, metrics)
 
         else:  # if step and epoch
             # step is relative to epoch only here
             self.last_step = step + epoch * self.len_loader
             self.last_epoch = epoch
-            self._step(epoch)
+            self._step(epoch, metrics)
 
         self._last_lr = [group['lr'] for group in self.optimizer.param_groups]
